@@ -174,7 +174,10 @@
             <br>
           </div>
         <button id="shareBtn" class="btn btn-success">Share Dialog</button>
-
+        <div class="fb-share-button" 
+    data-href="{{ story_detail.image.url }}" 
+    data-layout="button_count">
+  </div>
 
 
           <div>
@@ -220,7 +223,6 @@ document.getElementById('shareBtn').onclick = function() {
     display: 'popup',
     method: 'share',
     href: '{{ request.build_absolute_uri }}{{ object.get_absolute_url }}',
-    app_id: '327939761408427',
   }, function(response){});
 }
 </script>
