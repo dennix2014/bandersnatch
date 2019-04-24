@@ -63,6 +63,7 @@
 </div>
 
         {% else %}
+        <a class="nav-item nav-link active text-warning  links-sm" href="{% url 'home' %}">Stories</a>
             <a class="nav-item nav-link active text-warning links-sm" href="{% url 'account_login' %}">Login</a>
             <a class="nav-item nav-link active text-warning links-sm" href="{% url 'account_signup' %}">Sign Up</a>
         {% endif %}
