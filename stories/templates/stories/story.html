@@ -77,28 +77,16 @@
              <br>
           </div>
           <div>
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-           
-
-  <!-- Your share button code -->
-            
-            
-            <br>
-          </div>
-    
-         <div id="shareBtn"><img src="{% static 'facebook.png' %}" alt="facebookIcon" width="40" height="40"></div>
+        <span>Share </span>
+         <span id="shareBtn"><img src="{% static 'facebook.png' %}" alt="facebookIcon" width="40" height="40"></span>
     
           
+      <a href="https://twitter.com/intent/tweet?text={{ story_detail.title }}&url={{ request.build_absolute_uri }}{{ object.get_absolute_url }}"
+      data-size="large" target="_blank">
+      <img src="{% static 'twitter.png' %}" alt="twitterIcon" width="40" height="40">
+      </a>
+      </div>
 
-
-          <div>
-            <br>
-            <a 
-              href="https://twitter.com/intent/tweet?text={{ story_detail.title }}&url={{ request.build_absolute_uri }}{{ object.get_absolute_url }}"
-              data-size="large" target="_blank">
-              <img src="{% static 'twitter.png' %}" alt="twitterIcon" width="40" height="40">
-              </a>
             <br>
             
             <br>
