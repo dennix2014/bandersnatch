@@ -18,7 +18,7 @@ def home(request):
 	return render(request, 'stories/home.html', {'stories':stories, 'story':story})
 
 
-@login_required
+
 def story(request, story_id):
 	story_detail = get_object_or_404(Stories, pk=story_id)
 	temp_instance = story_detail.body
@@ -30,6 +30,7 @@ def story(request, story_id):
 	if request.method == 'GET':
 		return render(request, 'stories/story.html', {'story_detail':story_detail, 'story':story, 'child_stories':child_stories})
 
+@login_required
 @permission_required('stories.add_stories', login_url='home')
 def addstory(request, story_id=None):
 	story_item = Stories()
