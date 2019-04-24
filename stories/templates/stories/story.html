@@ -182,8 +182,18 @@
               data-layout="button"
               data-size="large">
             </span>
+            <script>
+            document.getElementById('shareBtn').onclick = function() {
+            FB.ui({
+            display: 'popup',
+            method: 'share',
+            href: '{{ request.build_absolute_uri }}{{ object.get_absolute_url }}',
+            }, function(response){});
+            }
+           </script>
             <br>
           </div>
+          <div id="shareBtn" class="btn btn-success clearfix">Share Dialog</div>
 
 
           <div>
