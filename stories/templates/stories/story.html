@@ -8,7 +8,7 @@
     
         
 {% block content %}
-
+<div class="container">
 {% if perms.stories.add_stories %}
     <a class="text-warning links-sm" href="{% url 'editstory' story_detail.id %}">Edit &nbsp;</a>
     <a class="text-warning links-sm" href="{% url 'addstory' story_detail.id %}">Add</a>
@@ -130,9 +130,19 @@
     
     
 
-      </div>
+  <script type="text/javascript">
+    document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    client_id:'327939761408427',
+    display: 'popup',
+    method: 'share',
+    href: '{{ request.build_absolute_uri }}{{ object.get_absolute_url }}',
+  }, function(response){});
+}
+
+  </script>
   
   
  
- <script src="{% static 'ovoko.js' %}"></script>
+
 {% endblock %}
