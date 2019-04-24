@@ -1,0 +1,94 @@
+{% extends 'account/base.html' %}
+{% block title %} Home {% endblock %}
+{% load staticfiles %}
+{% load i18n widget_tweaks %}
+
+
+{% block content %}
+<div class="container">
+<section class="bg-dark text-center animated fadeInRightBig">
+      <div class="text py-5">
+        <p class="lead">Welcome {{request.user.first_name}}</p>
+        <h1>[ Some welcome message ]</h1>
+      </div>
+    </section>
+    <br>
+    <br>
+  <section class="padding" id="blog">
+      <div class="container">
+        <h2 class="section-title text-center">Stories</h2>
+        <br>
+        <br>
+        <br>
+        {% if request.GET.next %}
+    <div class="alert alert-danger" role="alert">
+       Call your mother, She worries
+    </div>
+     {% endif %}
+        <div class="row">
+        <div class="col-sm-4">
+          {% if story.has_previous %}
+            <a class="text-warning links-sm" href="?page=1">&laquo;&laquo;First &nbsp;&nbsp;&nbsp;</a>
+            <a class="text-warning links-sm" href="?page={{ story.previous_page_number }}">&laquo;Previous</a>
+          {% endif %}
+        </div>
+
+        <div class="col-sm-4 text-center">
+          <span class="current text-light">
+          Page {{ story.number }} of {{ story.paginator.num_pages }}.
+          </span>
+        </div>
+        <div class="col-sm-4 text-right">
+          {% if story.has_next %}
+            <a class="text-warning links-sm" href="?page={{ story.next_page_number }}">Next&raquo;&nbsp;&nbsp;&nbsp;</a>
+            <a class="text-warning links-sm" href="?page={{ story.paginator.num_pages }}">Last &raquo;&raquo;</a>
+          {% else %}
+          {% endif %}
+        </div>
+    </div>
+    <br>
+        <div class="section-body">
+          <div class="row col-spacing">
+            {% for item in story %}
+            <div class="col-12 col-md-6 col-lg-4">
+              <article class="card bg-dark">
+                <img class="card-img-top animated fadeInLeft" src="{{ item.image.url}}" alt="Article Image">
+                <div class="card-body">
+                  <a class="card-title animated fadeInRight text-warning title-sm" href="{% url 'story' item.id %}"><h4>{{ item.title }}</h4></a>
+                  <p class="card-text animated fadeInDown text-light">{{ item.summary }}</p>
+                </div>
+              </article>
+              <br>
+              <br>
+            </div>
+              {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </section>
+ <div class="row">
+        <div class="col-sm-4">
+          {% if story.has_previous %}
+            <a class="text-warning links-sm" href="?page=1">&laquo;&laquo;First &nbsp;&nbsp;&nbsp;</a>
+            <a class="text-warning links-sm" href="?page={{ story.previous_page_number }}">&laquo;Previous</a>
+          {% endif %}
+        </div>
+
+        <div class="col-sm-4 text-center">
+          <span class="current text-light">
+          Page {{ story.number }} of {{ story.paginator.num_pages }}.
+          </span>
+        </div>
+        <div class="col-sm-4 text-right">
+          {% if story.has_next %}
+            <a class="text-warning links-sm" href="?page={{ story.next_page_number }}">Next&raquo;&nbsp;&nbsp;&nbsp;</a>
+            <a class="text-warning links-sm" href="?page={{ story.paginator.num_pages }}">Last &raquo;&raquo;</a>
+          {% else %}
+          {% endif %}
+        </div>
+    </div>
+</div>
+
+  
+{% endblock %}

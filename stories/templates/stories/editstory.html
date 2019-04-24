@@ -1,0 +1,80 @@
+{% extends 'account/base.html' %}
+{% block title %} Edit Story {% endblock %}
+{% load i18n widget_tweaks %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<div class="container">
+	<div class="row justify-content-md-center">
+	<div class="col-md-1">
+	    </div>
+	    <div class="col-md-4">
+	    	<h1>New Story</h1>
+	    </div>
+	</div>
+	<br>
+	<br>
+
+    
+    <form method="POST" enctype='multipart/form-data'>{% csrf_token %}
+    	{{ form.media }}
+    		<div class="row">
+	    		<div class="col-md-1">
+	    			<p>Title</p>
+	    		</div>
+	    			<div class="col-md-4">
+	      			<div class="form-group">
+	        			{{ form.title|attr:"class:form-control"}}
+	        			<label class="form-control-placeholder" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+	      			</div>
+	     		</div>
+	     		
+	  		</div>
+	  		<br>
+	  		<div class="row">
+	  			<div class="col-md-1">
+	    			<p>Body</p>
+	    		</div>
+	  		<div class="col-md-6">
+	      			<div class="form-group">
+	        			{{ form.body|attr:"class:form-control"}}
+	        			<label class="form-control-placeholder" for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
+	      			</div>
+	     		</div>
+	     	</div>
+			<div class="row">
+				<div class="col-md-1">
+	    			<p>Image</p>
+	    		</div>
+	    		<div class="col-md-4">
+	      			<div class="form-group">
+	        			{{ form.image }}
+	        			<label class="form-control-placeholder" for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+	      			</div>
+	     		</div>
+	     	</div>
+	     	<br>
+	  		<div class="row">
+	  			<div class="col-md-1">
+	    			<p>Parent</p>
+	    		</div>
+	    		<div class="col-md-4">
+	      			<div class="form-group">
+	        			{{ form.parent|attr:"class:form-control"}}
+	        			<label class="form-control-placeholder" for="{{ form.parent_id.id_for_label }}">{{ form.parent.label }}</label>
+	        			{{ form.parent.errors }}
+	        			<br> 
+	      			</div>
+	     		</div>
+	     		
+	  		</div>
+	  		<div class="row">
+	  			<div class="col-md-0">
+	    		</div>
+	    		<div class="col-md-2">
+	      		<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

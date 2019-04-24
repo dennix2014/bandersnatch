@@ -1,0 +1,110 @@
+{% extends 'account/base.html' %}
+{% block title %}  Sign In {% endblock %}
+{% load staticfiles %}
+{% load i18n widget_tweaks %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+ 	<div class="container animated fadeInLeft">
+
+
+<div class="text-center">
+<h1>{% trans "Sign In" %}</h1>
+{% if request.GET.next %}
+		<div class="alert alert-danger" role="alert">
+        Please log in to read more or <a href="{% url 'account_signup' %}">Sign Up Here</a> if you dont have an account.
+        </div>
+        {% else %}
+        {% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Or, <a href="{{ signup_url }}">Sign up</a>
+if you dont have an account{% endblocktrans %}</p>
+
+
+		
+
+
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+	    {% endif %}
+
+
+</div>
+    	<br>
+    	<br>
+    	<br>
+<div class="row justify-content-md-center">
+		 <div class="socialaccount_ballot">
+		{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+ 		</div>
+ 		</div>
+ 		<br>
+ 		<h3 class="text-center">----OR----</h3>
+ 		<br>
+     	
+    <form class="text-dark" id="login_form" method="POST" action="{% url 'account_login' %}">
+    	{% csrf_token %} 
+    	<div class="row justify-content-sm-center">
+	    	<div class="col-sm-4">
+	    		{% if form.errors %}
+	    			{% for field in form %}
+                    	{% for error in field.errors %}
+                    	<div class="alert alert-danger" role="alert">{{ error|escape }}</div>
+                       	{% endfor %}
+                		{% endfor %}
+              		{% for error in form.non_field_errors %}
+                  		<div class="alert alert-danger" role="alert">
+                    		{{ error|escape }}
+                  		</div>
+                	{% endfor %}
+              		{% endif %}
+	    	</div>
+	    </div>
+	    <br>
+    	<div class="row justify-content-sm-center">
+	    		<div class="col-sm-4">
+
+	      			<div class="form-group">
+	        			{{ form.login|attr:"class:form-control"}}
+	        			<label class="form-control-placeholder" for="{{ form.login.id_for_label }}">{{ form.login.label }}</label>
+	        			
+	      			</div>
+
+	     		</div>
+
+	     	</div>
+
+	  		<div class="row justify-content-sm-center">
+	    		<div class="col-sm-4">
+	      			<div class="form-group">
+	        			{{ form.password|attr:"class:form-control"}}
+	        			<label class="form-control-placeholder" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+	        			<br> 
+	      			</div>
+	     		</div>
+	     	</div>
+	     	<div class="row justify-content-sm-center">
+	    		<div class="col-sm-4">
+	    			{% if request.GET.next %}
+	    			<input type="hidden" name="next" value="{{ request.GET.next }}">
+	    			{% endif %}
+	      		<button type="submit" class="btn btn-primary btn-block">Login</button>
+	      		<p class="text-right"><a class="text-warning" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></p>
+	     		</div>
+
+	     		
+	     	</div>
+
+
+	    </form>
+	
+ </div>
+
+
+    
+{% endblock %}
