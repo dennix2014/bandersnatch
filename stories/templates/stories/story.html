@@ -87,21 +87,18 @@
             <br>
           </div>
     
-         <div id="shareBtn"><img src="{% static 'facebook.png' %}" alt="Girl in a jacket" width="40" height="40"></div>
+         <div id="shareBtn"><img src="{% static 'facebook.png' %}" alt="facebookIcon" width="40" height="40"></div>
     
           
-          <div class="fb-share-button" 
-           data-href="{{ request.build_absolute_uri }}{{ object.get_absolute_url }}" 
-            data-layout="button_count">
-           </div>
 
 
           <div>
             <br>
-            <a class="twitter-share-button"
+            <a 
               href="https://twitter.com/intent/tweet?text={{ story_detail.title }}&url={{ request.build_absolute_uri }}{{ object.get_absolute_url }}"
               data-size="large" target="_blank">
-              Tweet</a>
+              <img src="{% static 'twitter.png' %}" alt="twitterIcon" width="40" height="40">
+              </a>
             <br>
             
             <br>
