@@ -11,7 +11,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ story_detail.title }}">
     <meta property="og:description" content="{{ story_detail.title }}">
-    <meta property="og:image" content="https://denixx.com/media/images/chimamanda-adichie.jpg">
+    <meta property="og:image" content="{{ story_detail.image.url }}">
     <meta property="fb:app_id" content="327939761408427">
 
     <meta name="google-signin-client_id" content="940221969324-74l7t4oj8rscq4oo7pcq9usd2q0lhmr6.apps.googleusercontent.com">
@@ -165,7 +165,7 @@
           <div>
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br>
 
-            <div id="fb-root"></div>
+            <soan id="fb-root"></span>
             <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -175,10 +175,10 @@
           }(document, 'script', 'facebook-jssdk'));</script>
 
   <!-- Your share button code -->
-            <div class="fb-share-button" 
+            <span class="fb-share-button" 
               data-href="{{ request.build_absolute_uri }}{{ object.get_absolute_url }}" 
               data-layout="button_count">
-            </div>
+            </span>
             <br>
           </div>
 
@@ -190,7 +190,7 @@
           	<br>
           	<br>
           {% if story.has_next %}
-          {% if stories %}
+          {% if child_stories %}
           <span class="title-sm"> Choose Path:</span>
           {% endif %}
           {% else%}
