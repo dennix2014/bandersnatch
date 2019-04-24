@@ -30,7 +30,6 @@ def story(request, story_id):
 	if request.method == 'GET':
 		return render(request, 'stories/story.html', {'story_detail':story_detail, 'story':story, 'child_stories':child_stories})
 
-@login_required
 @permission_required('stories.add_stories', login_url='home')
 def addstory(request, story_id=None):
 	story_item = Stories()
