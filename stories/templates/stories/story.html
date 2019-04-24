@@ -222,6 +222,7 @@
       <script>
 document.getElementById('shareBtn').onclick = function() {
   FB.ui({
+    client_id:'327939761408427',
     display: 'popup',
     method: 'share',
     href: '{{ request.build_absolute_uri }}{{ object.get_absolute_url }}',
@@ -235,9 +236,11 @@ document.getElementById('shareBtn').onclick = function() {
     js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
+  
   <script>
 document.getElementById('ogBtn').onclick = function() {
   FB.ui({
+    client_id:'327939761408427',
     display: 'popup',
     method: 'share_open_graph',
     action_type: 'og.likes',
