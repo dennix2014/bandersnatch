@@ -17,11 +17,10 @@
     <meta name="google-signin-client_id" content="940221969324-74l7t4oj8rscq4oo7pcq9usd2q0lhmr6.apps.googleusercontent.com">
     <title>{{ story_detail.title }}</title>
     <link rel="stylesheet" href="{% static 'ozz.css' %}">
-    <script type="text/javascript" src="{% static 'starjs' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link href="https://fonts.googleapis.com/css?family=Pangolin|Itim|Black+Ops+One" rel="stylesheet">
-
+    
    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,7 +32,7 @@
 <body class="bg-dark text-warning" style="background-image: url({% static 'bg.jpg' %});">
 
   <div class="main-container" >
-	<header>
+  <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,9 +59,10 @@
 </div>
 
         {% else %}
+            <a class="nav-item nav-link active text-warning  links-sm" href="{% url 'home' %}">Stories</a>
             <a class="nav-item nav-link active text-warning links-sm" href="{% url 'account_login' %}">Login</a>
             <a class="nav-item nav-link active text-warning links-sm" href="{% url 'account_signup' %}">Sign Up</a>
-            <a class="nav-item nav-link active text-warning  links-sm" href="{% url 'home' %}">Stories</a>
+            
         {% endif %}
 
         </div>
@@ -94,15 +94,15 @@
 <div class="fixed_elements">
 
 </div>
-	<div class="container">
-	<p class="title-sm"></p>
+  <div class="container">
+  <p class="title-sm"></p>
 
 {% if perms.stories.add_stories %}
-		<a class="text-warning links-sm" href="{% url 'editstory' story_detail.id %}">Edit &nbsp;</a>
-		<a class="text-warning links-sm" href="{% url 'addstory' story_detail.id %}">Add</a>
-		{% endif %}
+    <a class="text-warning links-sm" href="{% url 'editstory' story_detail.id %}">Edit &nbsp;</a>
+    <a class="text-warning links-sm" href="{% url 'addstory' story_detail.id %}">Add</a>
+    {% endif %}
     {{ story_detail.media }}
-		<h1 class="pt-3 text-center animated fadeInLeftBig title" >{{ story_detail.title }}</h1>
+    <h1 class="pt-3 text-center animated fadeInLeftBig title" >{{ story_detail.title }}</h1>
 
     <div class="row">
         <div class="col-sm-4">
@@ -126,22 +126,22 @@
         </div>
     </div>
     <br>
-		
-		{% if story_detail.image %}
-		<img class="img-fluid animated fadeInRight" src="{{ story_detail.image.url }}" height="400" width="400">
-		<br>
-		{% else %}
-		<p>.</p>
-		{% endif %}
+    
+    {% if story_detail.image %}
+    <img class="img-fluid animated fadeInRight" src="{{ story_detail.image.url }}" height="400" width="400">
+    <br>
+    {% else %}
+    <p>.</p>
+    {% endif %}
 
     <br>
-    	<div class="text-white animated fadeInLeftBig">
+      <div class="text-white animated fadeInLeftBig">
         <div class="stories">
-    		{% for st in story %}
-		{{ st |safe }}
-		{% endfor %}
-		<br>
-		<br>
+        {% for st in story %}
+    {{ st |safe }}
+    {% endfor %}
+    <br>
+    <br>
   </div>
 <div class="row">
         <div class="col-sm-4">
@@ -174,39 +174,41 @@
             
             <br>
           </div>
-          <div id="shareBtn" class="btn btn-success">Share Dialog</div>
+        <button id="shareBtn" class="btn btn-success">Share Dialog</button>
+
 
 
           <div>
-          	<br>
-          	<br>
-          	
-          	<br>
-          	<br>
+            <br>
+            <br>
+            
+            <br>
+            <br>
           {% if story.has_next %}
-          {% if child_stories %}
-          <span class="title-sm"> Choose Path:</span>
-          {% endif %}
+          
           {% else%}
-    		{% for stories in child_stories %}
-				<a class="btn btn-outline-warning mb-3" href="{% url 'story' stories.id %}" role="button" >{{ stories.title }}</a> &nbsp; &nbsp;
-			{% endfor %}
-			{% endif %}
-		</div>
+          {% if child_stories %}
+          <p class="title-sm"> Choose Path:</p>
+          {% endif %}
+        {% for stories in child_stories %}
+        <a class="btn btn-outline-warning mb-3" href="{% url 'story' stories.id %}" role="button" >{{ stories.title }}</a> &nbsp; &nbsp;
+      {% endfor %}
+      {% endif %}
+    </div>
          
        
     
 
-		
+    
 
-	</div>
-	
+  </div>
+  
 
 
     
-	
+  
     
-	</div>
+  </div>
           
   
     
@@ -214,14 +216,21 @@
 
       </div>
       <script>
-            document.getElementById('shareBtn').onclick = function() {
-            FB.ui({
-            display: 'popup',
-            method: 'share',
-            href: '{{ request.build_absolute_uri }}{{ object.get_absolute_url }}',
-            }, function(response){});
-            }
-           </script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    display: 'popup',
+    method: 'share',
+    href: '{{ request.build_absolute_uri }}{{ object.get_absolute_url }}',
+  }, function(response){});
+}
+</script>
+ <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
  <script src="{% static 'star.js' %}"></script>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
