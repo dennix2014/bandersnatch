@@ -77,8 +77,8 @@
              <br>
           </div>
           <div>
-        <span>Share </span>
-         <span id="shareBtn"><img src="{% static 'facebook.png' %}" alt="facebookIcon" width="40" height="40"></span>
+        <span class="title-sm">Share &nbsp;&nbsp;</span>
+         <span id="shareBtn"><img src="{% static 'facebook.png' %}" alt="facebookIcon" width="40" height="40"></span>&nbsp;
     
           
       <a href="https://twitter.com/intent/tweet?text={{ story_detail.title }}&url={{ request.build_absolute_uri }}{{ object.get_absolute_url }}"
