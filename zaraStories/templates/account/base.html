@@ -15,7 +15,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ story_detail.title }}">
     <meta property="og:description" content="{{ story_detail.title }}">
+    {% if story_detail.image %}
     <meta property="og:image" content="{{ story_detail.image.url }}">
+    {% endif %}
 
     <meta property="fb:app_id" content="327939761408427">
 
